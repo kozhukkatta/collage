@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>ANTi-MATRiX</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    a{
+        color: white;
+        font-size: 1.7vw;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .container-fluid{
+      margin-left:12vw;
+      margin-right:1vw;
+      margin-top:6vw;
+      color: white;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+  </style>
+  
+</head>
+<body style="background-image: url('{% static "img/home.jpg" %}'); background-repeat:no-repeat; background-size: cover; ">
+    <nav class="navbar navbar-expand-md nav-pills">
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <h2 class="text-white">ANTi-MATRiX</h2>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'adminhome' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'addstudent' %}">Add Student</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'course' %}">Add Course</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teacher_det' %}">Teacher Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_det' %}">Student Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+      {% block content %}
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'addstudent' %}"><img src="{{'static/img/student.png'}}" alt="" class="w-25"></a>
+            </div>
+            <div class="col">
+                <a href="{% url 'course' %}"><img src="{{'static/img/course.jfif'}}" alt="" class="w-25"></a>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'teacher_det' %}"><img src="{{'static/img/teacher.png'}}" alt="" class="w-25"></a>
+            </div>
+            <div class="col">
+                <a href="{% url 'student_det' %}"><img src="{{'static/img/stud.png'}}" alt="" class="w-25"></a>
+            </div>
+        </div>
+      </div>
+      {% endblock %}
+</body>
+</html>

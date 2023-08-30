@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>ANTi-MATRiX</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    body{
+      
+    }
+    a{
+        color: white;
+        font-size: 1.7vw;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .card-body{
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 2vw;
+        width: 30vw;
+        margin-left: 33vw;
+       }
+
+  </style>
+  
+</head>
+<body style="background-image: url('{% static "img/home.jpg" %}'); background-repeat:no-repeat; background-size: cover; ">
+    <nav class="navbar navbar-expand-md nav-pills">
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <h2>ANTi-MATRiX</h2>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'teacherhome' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'tedit' %}">Edit Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+      {% block content %}
+      <div class="card-body">
+        <h2 class="text-center">Teacher Registration</h2>
+       <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      
+        <div class="was-validated">
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input class="form-control" type="text" name="fname" id="fname" value="{{users.user.first_name}}" required> 
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input class="form-control" type="text" name="lname" id="lname" value="{{users.user.last_name}}" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="mob">Mobile Number:</label>
+                <input class="form-control" type="text" name="mob" id="mob" value="{{users.mob}}" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea name="address" id="address" cols="30" rows="3" class="form-control" required>{{users.address}}</textarea>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="uname">Username:</label>
+                <input class="form-control" type="text" name="uname" id="uname" value="{{users.user.username}}" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <div class="form-group">
+                <label for="mail">Email:</label>
+                <input class="form-control" type="mail" name="mail" id="mail" value="{{users.user.email}}" required>
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+            <img src="{{users.image.url}}" alt="" class="w-25"><br>{{users.image}}
+            <div class="form-group">
+                <label for="file">Image:</label>
+                <input class="form-control" type="file" name="file" accept="image/" id="file" >
+                <div class="valid-feedback">Valid</div>
+                <div class="invalid-feedback">Please fill out this field</div>
+            </div>
+          <div>
+            <select name="sel" id="sel" class="form-control">
+                <option value="{{users.course.id}}" hidden>{{users.course.course_name}}</option> 
+              {% for c in courses  %}
+              <option value="{{c.id}}">{{c.course_name}}</option>
+              {% endfor %}
+          </select>
+          </div>
+           
+           <br>
+            
+            <div><center>
+                <input type="submit" name="submit" class="btn btn-primary w-100" id=""><br></center>
+                <br>
+            </div>
+            
+        </div>
+       </form>
+      </div> 
+      {% endblock %}
+</body>
+</html>
